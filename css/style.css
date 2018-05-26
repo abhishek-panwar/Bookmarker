@@ -76,4 +76,10 @@ body {
   .jumbotron {
     border-bottom: 0;
   }
-}
+
+  .margin_left {
+    margin-left: 3px;
+  }
+
+
+  }

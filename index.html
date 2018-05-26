@@ -11,35 +11,30 @@
     <link href="css/style.css" rel="stylesheet">
   </head>
 
-  <body onload="fetchBookmarks()">
-
+  <body>
     <div class="container">
       <div class="header clearfix">
         <nav>
 
         </nav>
-        <h3 class="text-muted">Bookmarker</h3>
+        <h4 class="text-muted">Bookmarker</h4>
       </div>
 
       <div class="jumbotron">
-        <h2>Bookmark Your Favorite Sites</h2>
+        <h4>Bookmark Your Favorite Sites</h4>
         <form id="myForm">
           <div class="form-group">
             <label>Site Name</label>
-            <input type="text" class="form-control" id="siteName" placeholder="Website Name">
+            <input type="text" class="form-control" id="siteName" placeholder="Website Name" style="width:200px">
           </div>
           <div class="form-group">
             <label>Site URL</label>
-            <input type="text" class="form-control" id="siteUrl" placeholder="Website URL">
+            <input type="text" class="form-control" id="siteUrl" placeholder="Website URL" style="width:200px">
           </div>
-          <button type="submit" class="btn btn-primary">Submit</button>
-        </form>
-      </div>
+          <button type="submit" class="btn btn-primary" style="width:200px">Add</button></br></br>
+          <a target="_blank" href="bookmarks.html">bookmarks</a>
 
-      <div class="row marketing">
-        <div class="col-lg-12">
-          <div id="bookmarksResults"></div>
-        </div>
+        </form>
       </div>
 
       <footer class="footer">
