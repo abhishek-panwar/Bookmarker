@@ -1,60 +1,45 @@
-document.getElementById("myForm").addEventListener('submit', saveBookmark);
-window.addEventListener('load', saveBookmark1);
+document.getElementById("btnAdd").addEventListener('click', saveBookmark);
+window.addEventListener('load', loadBookmark);
 
-
-
-function saveBookmark1(e)
+function loadBookmark(e)
 {
-  //alert(document.getElementById("myForm"));
-  //alert("hello")
   chrome.tabs.getSelected(null,function(tab) { // null defaults to current window
     var title = tab.title;
     var url = tab.url;
+      if(title.length>66)
+      {
+        title = title.substring(0,65);
+      }
     document.getElementById('siteName').value = title;
     document.getElementById('siteUrl').value = url;
-
   });
-
 }
-
 
 function saveBookmark(e)
 {
-  // var currentUrl = window.location.href;
-  // alert("vjdnvj");
-  //console.log(currentUrl);
   var siteName = document.getElementById('siteName').value;
   var siteUrl = document.getElementById('siteUrl').value;
-  //alert(siteUrl);
-
-
+  if(siteName.length>66)
+  {
+    siteName = siteName.substring(0,65);
+  }
   if(!validateForm(siteName, siteUrl))
   {
     return false
   }
-
   if(!siteUrl.includes("http://") && !siteUrl.includes("https://") && siteUrl.includes("www."))
   {
     siteUrl = "https://"+siteUrl;
   }
-
     var bookmark = {
     name:siteName,
     url:siteUrl
   }
-
-  //alert(bookmark)
-  //
-  // //console.log(bookmark);
-  //
   if(localStorage.getItem('bookmarks')===null)
   {
     var bookmarks = [];
     bookmarks.push(bookmark);
     localStorage.setItem('bookmarks', JSON.stringify(bookmarks));
-    //localStorage.setItem('bookmarks', bookmarks);
-    //console.log(bookmarks);
-
   }
   else {
     var bookmarks = JSON.parse(localStorage.getItem('bookmarks'));
@@ -63,22 +48,14 @@ function saveBookmark(e)
     {
       bookmarks.push(bookmark);
       localStorage.setItem('bookmarks', JSON.stringify(bookmarks));
+      document.getElementById('failureMessage').innerHTML='';
+      document.getElementById('successMessage').innerHTML='Bookmark added...';
     }
     else {
-      alert("already exist");
+      document.getElementById('successMessage').innerHTML='';
+      document.getElementById('failureMessage').innerHTML='Bookmark already exists...';
     }
-
-    //console.log(bookmarks);
   }
-  //
-  //
-  //document.getElementById('myForm').reset();
-  // fetchBookmarks();
-  // //e.preventDefault();
-
-  //alert(localStorage.getItem('bookmarks'));
-
-
 }
 
 function bookmarkExist(bookmarks, bookmark)
@@ -100,7 +77,7 @@ function validateForm(siteName, siteUrl)
 {
   if(!siteUrl || !siteName)
   {
-    alert("please fill the form");
+    document.getElementById('failureMessage').innerHTML='Please fill the form...';
     return false
   }
 
@@ -108,9 +85,8 @@ function validateForm(siteName, siteUrl)
   var regex = new RegExp(expression);
 
   if (!siteUrl.match(regex)) {
-    alert("Invalid URL");
+    document.getElementById('failureMessage').innerHTML='Invalid URL...';
     return false
   }
   return true
-
 }

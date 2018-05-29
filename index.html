@@ -31,8 +31,10 @@
             <label>Site URL</label>
             <input type="text" class="form-control" id="siteUrl" placeholder="Website URL" style="width:200px">
           </div>
-          <button type="submit" class="btn btn-primary" style="width:200px">Add</button></br></br>
-          <a target="_blank" href="bookmarks.html">bookmarks</a>
+          <button id="btnAdd" type="button" class="btn btn-primary" style="width:200px">Add</button></br></br>
+          <a target="_blank" href="bookmarks.html">Bookmarks</a>
+          <h5 id="failureMessage" style="color:red"></h5>
+          <h5 id="successMessage" style="color:green"></h5>
 
         </form>
       </div>
@@ -44,7 +46,6 @@
     </div> <!-- /container -->
 
     <script
-    src="https://code.jquery.com/jquery-3.1.1.js"
     integrity="sha256-16cdPddA6VdVInumRGo6IbivbERE8p7CQR3HzTBuELA="
     crossorigin="anonymous"></script>
     <script src="js/bootstrap.min.js"></script>
