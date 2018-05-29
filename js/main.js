@@ -40,6 +40,7 @@ function saveBookmark(e)
     var bookmarks = [];
     bookmarks.push(bookmark);
     localStorage.setItem('bookmarks', JSON.stringify(bookmarks));
+    document.getElementById('successMessage').innerHTML='Bookmark added...';
   }
   else {
     var bookmarks = JSON.parse(localStorage.getItem('bookmarks'));
